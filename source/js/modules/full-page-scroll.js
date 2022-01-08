@@ -22,8 +22,15 @@ export default class FullPageScroll {
   onScroll(evt) {
     const currentPosition = this.activeScreen;
     this.reCalculateActiveScreenPosition(evt.deltaY);
+
     if (currentPosition !== this.activeScreen) {
-      this.changePageDisplay();
+      const activeScreenElement = Array.from(this.screenElements).find((screen, index) => index === this.activeScreen);
+
+      if (!activeScreenElement || !activeScreenElement.id) {
+        return;
+      }
+
+      window.location.hash = activeScreenElement.id;
     }
   }
 
@@ -45,7 +52,10 @@ export default class FullPageScroll {
       screen.classList.remove(`active`);
     });
     this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
-    this.screenElements[this.activeScreen].classList.add(`active`);
+
+    setTimeout(() => {
+      this.screenElements[this.activeScreen].classList.add(`active`);
+    }, 100);
   }
 
   changeActiveMenuItem() {
