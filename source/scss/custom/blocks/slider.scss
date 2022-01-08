@@ -1,0 +1,89 @@
+.slider__item-text {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.slider__control {
+  cursor: default;
+  transition: color 0.1s;
+
+  @mixin slider-control-bg-colors {
+    border-color: $c-light;
+    background-color: $c-light;
+  }
+
+  &::before {
+    transition: width 0.3s, height 0.3s;
+    @include slider-control-bg-colors;
+  }
+
+  &:hover,
+  &:focus,
+  &:active,
+  &:active:focus {
+    &::before {
+      @include slider-control-bg-colors;
+    }
+  }
+
+  &:active,
+  &:active:focus {
+    &::before {
+      width: 112.5%;
+      height: 112.5%;
+    }
+  }
+
+  &.swiper-button-disabled {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@mixin slider-control-colors($color, $color--interaction) {
+  .slider__control {
+    color: $color--interaction;
+
+    &:hover {
+      color: $color;
+    }
+  }
+}
+
+.page-root--history-slide--1 {
+  @include slider-control-colors($c-theme-1, $c-theme-1--interaction);
+}
+
+.page-root--history-slide--2 {
+  @include slider-control-colors($c-theme-2--interaction, $c-theme-2);
+}
+
+.page-root--history-slide--3 {
+  @include slider-control-colors($c-theme-3--interaction, $c-theme-3);
+}
+
+.page-root--history-slide--4 {
+  @include slider-control-colors($c-theme-4--interaction, $c-theme-4);
+}
+
+.screen.active .slider {
+  .slider__item.swiper-slide-active,
+  .slider__item.swiper-slide-next {
+    .slider__item-text {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .slider__item.swiper-slide-active {
+    .slider__item-text {
+      transition: opacity 0.4s linear 0.3s, transform 0.4s linear 0.3s;
+    }
+  }
+
+  .slider__item.swiper-slide-next {
+    .slider__item-text {
+      transition: opacity 0.4s linear 0.5s, transform 0.4s linear 0.5s;
+    }
+  }
+}

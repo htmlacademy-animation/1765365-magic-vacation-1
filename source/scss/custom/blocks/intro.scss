@@ -1,0 +1,10 @@
+.intro__message {
+  opacity: 0;
+  transition: 0.5s;
+  transform: translateY(15%);
+
+  .screen.active & {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

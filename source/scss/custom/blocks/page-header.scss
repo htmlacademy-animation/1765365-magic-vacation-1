@@ -1,0 +1,62 @@
+.page-header__menu {
+  a {
+    transition: color $main-menu-item-transition-duration;
+
+    &::after {
+      width: 0;
+      display: block;
+      right: 0;
+      transition: width $main-menu-item-transition-duration, background-color $main-menu-item-transition-duration;
+    }
+
+    &.active {
+      &::after {
+        width: 100%;
+        left: 0;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      color: $c-purple;
+      outline: none;
+
+      &::after {
+        background-color: $c-purple;
+        width: 100%;
+        left: 0;
+      }
+    }
+  }
+}
+
+@mixin page-header-menu-colors($color) {
+  .page-header__menu {
+    a {
+      &:hover,
+      &:focus {
+        color: $color;
+
+        &::after {
+          background-color: $color;
+        }
+      }
+    }
+  }
+}
+
+.page-root--history-slide--1 {
+  @include page-header-menu-colors($nav-link-c-theme-1--interaction);
+}
+
+.page-root--history-slide--2 {
+  @include page-header-menu-colors($nav-link-c-theme-2--interaction);
+}
+
+.page-root--history-slide--3 {
+  @include page-header-menu-colors($nav-link-c-theme-3--interaction);
+}
+
+.page-root--history-slide--4 {
+  @include page-header-menu-colors($nav-link-c-theme-4--interaction);
+}
