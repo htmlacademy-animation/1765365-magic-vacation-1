@@ -78,6 +78,28 @@
   }
 }
 
+.formFieldAnimated {
+  position: relative;
+}
+
+.formFieldAnimated__input {
+  @extend .form__field;
+  display: block;
+  position: absolute;
+  right: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+.screen.active {
+  .formFieldAnimated {
+    .formFieldAnimated__input {
+      transition: width 0.7s;
+      width: 100%;
+    }
+  }
+}
+
 .form__button {
   flex-grow: 1;
 

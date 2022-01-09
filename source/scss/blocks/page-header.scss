@@ -241,16 +241,19 @@
     display: block;
     color: inherit;
     padding: 0 0.5em 0.5em;
+    transition: color $main-menu-item-transition-duration;
 
     &::after {
       content: "";
       position: absolute;
       bottom: 0;
-      width: 100%;
       height: 2px;
       background-color: $c-light;
-      display: none;
       left: 0;
+      width: 0;
+      display: block;
+      right: 0;
+      transition: width $main-menu-item-transition-duration, background-color $main-menu-item-transition-duration;
 
       @media (max-width: $tablet) and (orientation: portrait) {
         left: 0;
@@ -267,7 +270,8 @@
 
     &.active {
       &::after {
-        display: block;
+        width: 100%;
+        left: 0;
       }
     }
 
@@ -279,9 +283,42 @@
       &::after {
         opacity: 1;
         background-color: $c-purple;
+        width: 100%;
+        left: 0;
       }
     }
   }
+}
+
+@mixin page-header-menu-colors($color) {
+  .page-header__menu {
+    a {
+      &:hover,
+      &:focus {
+        color: $color;
+
+        &::after {
+          background-color: $color;
+        }
+      }
+    }
+  }
+}
+
+.page-root--history-slide--1 {
+  @include page-header-menu-colors($nav-link-c-theme-1--interaction);
+}
+
+.page-root--history-slide--2 {
+  @include page-header-menu-colors($nav-link-c-theme-2--interaction);
+}
+
+.page-root--history-slide--3 {
+  @include page-header-menu-colors($nav-link-c-theme-3--interaction);
+}
+
+.page-root--history-slide--4 {
+  @include page-header-menu-colors($nav-link-c-theme-4--interaction);
 }
 
 .page-header__social {
