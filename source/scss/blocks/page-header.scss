@@ -243,6 +243,7 @@
     padding: 0 0.5em 0.5em;
     transition: color $main-menu-item-transition-duration;
 
+    &::before,
     &::after {
       content: "";
       position: absolute;
@@ -252,8 +253,9 @@
       left: 0;
       width: 0;
       display: block;
-      right: 0;
       transition: width $main-menu-item-transition-duration, background-color $main-menu-item-transition-duration;
+      z-index: 1;
+      opacity: 0;
 
       @media (max-width: $tablet) and (orientation: portrait) {
         left: 0;
@@ -268,13 +270,20 @@
       }
     }
 
+    &::before {
+      right: 0;
+      left: auto;
+      z-index: 2;
+      opacity: 1;
+    }
+
     &.active {
       &::after {
-        width: 100%;
-        left: 0;
+        background-color: $c-light;
       }
     }
 
+    &.active,
     &:hover,
     &:focus {
       color: $c-purple;
@@ -284,7 +293,29 @@
         opacity: 1;
         background-color: $c-purple;
         width: 100%;
-        left: 0;
+        z-index: 3;
+      }
+
+      &::before {
+        width: 100%;
+        opacity: 0;
+      }
+    }
+
+    &.active {
+      color: $c-light;
+
+      &::after {
+        background-color: $c-light;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      color: $c-purple;
+
+      &::after {
+        background-color: $c-purple;
       }
     }
   }
@@ -297,6 +328,7 @@
       &:focus {
         color: $color;
 
+        &::before,
         &::after {
           background-color: $color;
         }
