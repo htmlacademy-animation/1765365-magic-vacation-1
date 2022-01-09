@@ -45,7 +45,17 @@ export default class FullPageScroll {
       screen.classList.remove(`active`);
     });
     this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
-    this.screenElements[this.activeScreen].classList.add(`active`);
+
+    setTimeout(() => {
+      // Таймаут добавлен с учётом описания задачи 1.13.
+      // Ссылка на задачу - https://up.htmlacademy.ru/animation/1/tasks/2".
+      // Часть описания задачи:
+      // "Когда экран станет активным, из этой секции исчезнет класс screen--hidden,
+      // и через 100 мс добавится класс active.
+      // Для запуска линейной анимации можно отслеживать добавление этого класса."
+
+      this.screenElements[this.activeScreen].classList.add(`active`);
+    }, 100);
   }
 
   changeActiveMenuItem() {
