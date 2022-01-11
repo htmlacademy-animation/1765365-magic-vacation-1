@@ -286,7 +286,6 @@
     &.active,
     &:hover,
     &:focus {
-      color: $c-purple;
       outline: none;
 
       &::after {
@@ -307,6 +306,14 @@
 
       &::after {
         background-color: $c-light;
+      }
+
+      @media (max-width: $mobile) {
+        color: inherit;
+
+        &::after {
+          background-color: $c-purple;
+        }
       }
     }
 
