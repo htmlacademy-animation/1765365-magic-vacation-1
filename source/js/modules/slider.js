@@ -26,7 +26,7 @@ export default () => {
   let selectedSlideNumber;
 
   const setSlider = function () {
-    handleSlideChange(1);
+    handleSlideChange(1, true);
 
     if (((window.innerWidth / window.innerHeight) < 1) || window.innerWidth < 769) {
       storySlider = new Swiper(`.js-slider`, {
@@ -40,13 +40,13 @@ export default () => {
         on: {
           slideChange: () => {
             if (storySlider.activeIndex === 0 || storySlider.activeIndex === 1) {
-              handleSlideChange(1);
+              handleSlideChange(1, true);
             } else if (storySlider.activeIndex === 2 || storySlider.activeIndex === 3) {
-              handleSlideChange(2);
+              handleSlideChange(2, true);
             } else if (storySlider.activeIndex === 4 || storySlider.activeIndex === 5) {
-              handleSlideChange(3);
+              handleSlideChange(3, true);
             } else if (storySlider.activeIndex === 6 || storySlider.activeIndex === 7) {
-              handleSlideChange(4);
+              handleSlideChange(4, true);
             }
           },
           resize: () => {
