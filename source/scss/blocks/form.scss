@@ -78,6 +78,34 @@
   }
 }
 
+.formFieldAnimated {
+  position: relative;
+  overflow: hidden;
+}
+
+.formFieldAnimated__input {
+  @extend .form__field;
+  display: block;
+  position: absolute;
+  right: 0;
+  width: 100%;
+  overflow: hidden;
+  transform: translateX(100%);
+  padding-right: 0;
+  padding-left: 0;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.screen.active {
+  .formFieldAnimated {
+    .formFieldAnimated__input {
+      transition: transform 0.7s;
+      transform: translateX(0);
+    }
+  }
+}
+
 .form__button {
   flex-grow: 1;
 

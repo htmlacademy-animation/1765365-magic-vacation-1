@@ -241,16 +241,21 @@
     display: block;
     color: inherit;
     padding: 0 0.5em 0.5em;
+    transition: color $main-menu-item-transition-duration;
 
+    &::before,
     &::after {
       content: "";
       position: absolute;
       bottom: 0;
-      width: 100%;
       height: 2px;
       background-color: $c-light;
-      display: none;
       left: 0;
+      width: 0;
+      display: block;
+      transition: width $main-menu-item-transition-duration, background-color $main-menu-item-transition-duration;
+      z-index: 1;
+      opacity: 0;
 
       @media (max-width: $tablet) and (orientation: portrait) {
         left: 0;
@@ -265,23 +270,94 @@
       }
     }
 
+    &::before {
+      right: 0;
+      left: auto;
+      z-index: 2;
+      opacity: 1;
+    }
+
     &.active {
       &::after {
-        display: block;
+        background-color: $c-light;
+      }
+    }
+
+    &.active,
+    &:hover,
+    &:focus {
+      outline: none;
+
+      &::after {
+        opacity: 1;
+        background-color: $c-purple;
+        width: 100%;
+        z-index: 3;
+      }
+
+      &::before {
+        width: 100%;
+        opacity: 0;
+      }
+    }
+
+    &.active {
+      color: $c-light;
+
+      &::after {
+        background-color: $c-light;
+      }
+
+      @media (max-width: $mobile) {
+        color: inherit;
+
+        &::after {
+          background-color: $c-purple;
+        }
       }
     }
 
     &:hover,
     &:focus {
       color: $c-purple;
-      outline: none;
 
       &::after {
-        opacity: 1;
         background-color: $c-purple;
       }
     }
   }
+}
+
+@mixin page-header-menu-colors($color) {
+  .page-header__menu {
+    a {
+      &:hover,
+      &:focus {
+        color: $color;
+
+        &::before,
+        &::after {
+          background-color: $color;
+        }
+      }
+    }
+  }
+}
+
+.page-root--history-slide--1 {
+  @include page-header-menu-colors($nav-link-c-theme-1--interaction);
+}
+
+.page-root--history-slide--2 {
+  @include page-header-menu-colors($nav-link-c-theme-2--interaction);
+}
+
+.page-root--history-slide--3 {
+  @include page-header-menu-colors($nav-link-c-theme-3--interaction);
+}
+
+.page-root--history-slide--4 {
+  @include page-header-menu-colors($nav-link-c-theme-4--interaction);
 }
 
 .page-header__social {
