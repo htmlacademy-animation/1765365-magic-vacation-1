@@ -27,7 +27,11 @@
   }
 
   &::before {
-    @include center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     content: "";
     width: 100%;
     height: 100%;
@@ -35,7 +39,12 @@
     background-color: $c-light;
     border: 2px solid $c-light;
     z-index: -1;
-    transition: 0.4s 0.1s;
+    transition: border-color 0.4s 0.1s, background-color 0.4s 0.1s, transform 0.3s cubic-bezier(.88,1.09,.81,1.56) 0.1s;
+    transform: scale(0.1);
+
+    .page-root--loaded & {
+      transform: scale(1);
+    }
   }
 
   svg {

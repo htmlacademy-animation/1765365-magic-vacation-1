@@ -46,7 +46,12 @@
   color: $c-dark;
   background-color: $c-light;
   z-index: 1;
-  transform: translateY(100vh);
+  transition: transform $logo-header-footer-on-load-custom-timing-func 0.3s;
+  transform: translateY(5rem);
+
+  .page-root--loaded & {
+    transform: translateY(0);
+  }
 
   @media (max-width: $tablet) and (orientation: portrait) {
     width: 3.5rem;
