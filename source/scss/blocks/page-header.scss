@@ -26,6 +26,8 @@
   justify-content: space-between;
 }
 
+$header-on-load-animation-duration: 0.4s;
+
 .page-header__logo {
   @include hover;
   position: relative;
@@ -35,6 +37,16 @@
   padding: 1rem 0;
   width: 10rem;
   color: $c-light;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(-2rem);
+  transition: opacity $logo-header-footer-on-load-custom-timing-func $header-on-load-animation-duration, transform $logo-header-footer-on-load-custom-timing-func $header-on-load-animation-duration;
+
+  .page-root--loaded & {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0);
+  }
 
   @media (min-width: $stop-scaling) {
     top: -5px;
@@ -130,6 +142,14 @@
 .page-header__nav {
   display: flex;
   align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity $logo-header-footer-on-load-custom-timing-func $header-on-load-animation-duration;
+
+  .page-root--loaded & {
+    visibility: visible;
+    opacity: 1;
+  }
 
   @media (max-width: $tablet) and (orientation: portrait) {
     position: fixed;
