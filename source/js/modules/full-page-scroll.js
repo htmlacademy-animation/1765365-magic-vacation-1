@@ -50,7 +50,7 @@ export default class FullPageScroll {
   }
 
   startScreenTransition(completeScreenTransition) {
-    const transitionEventKey = `transitionend`;
+    const transitionEndEventKey = `transitionend`;
 
     const transitionBlock = document.getElementById(`screen-transition-block`);
     const transitionActiveClassname = `screen-transition-animation-block--visible`;
@@ -60,7 +60,7 @@ export default class FullPageScroll {
 
     if (shouldAnimateScreenTransition) {
       transitionBlock.classList.add(transitionActiveClassname);
-      transitionBlock.addEventListener(transitionEventKey, handleTransitionEnd);
+      transitionBlock.addEventListener(transitionEndEventKey, handleTransitionEnd);
 
       return;
     }
@@ -71,7 +71,7 @@ export default class FullPageScroll {
     function handleTransitionEnd({target}) {
       target.classList.remove(transitionActiveClassname);
       completeScreenTransition();
-      transitionBlock.removeEventListener(transitionEventKey, handleTransitionEnd);
+      transitionBlock.removeEventListener(transitionEndEventKey, handleTransitionEnd);
     }
   }
 
