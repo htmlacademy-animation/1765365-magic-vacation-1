@@ -360,3 +360,22 @@
 .screen--rules {
   background-color: $c-dark;
 }
+
+.screen-transition-animation-block {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: $c-dark;
+  z-index: 1;
+  transform: translateY(calc(100vh + 3rem));
+  transition: transform 0.5s;
+  opacity: 0;
+}
+
+.screen-transition-animation-block--visible {
+  transform: translateY(0);
+  opacity: 1;
+}
